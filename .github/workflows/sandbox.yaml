@@ -6,5 +6,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Print
-        run: echo "Hello?"
+      - id: version
+        name: Get Factorio version
+        uses: ./.github/actions/factorio-version
+      - name: Print experimental version
+        run: echo "${{ steps.version.outputs.experimental }}"
+      - name: Print stable version
+        run: echo "${{ steps.version.outputs.stable }}"
