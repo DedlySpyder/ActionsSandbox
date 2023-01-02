@@ -1,13 +1,13 @@
 name: Test Workflow
 
-on: push
+on: workflow_dispatch
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - id: factorioVersion
-        uses: DedlySpyder/factorio-version-check@lint-workflow
+        uses: DedlySpyder/factorio-version-check@main
       - name: Print experimental version
         run: echo "${{ steps.factorioVersion.outputs.experimental }}"
       - name: Print stable version
