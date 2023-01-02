@@ -1,7 +1,7 @@
 name: Test tag actions
 on:
   release:
-    type: released
+    types: released
 jobs:
   test:
     runs-on: ubuntu-latest
