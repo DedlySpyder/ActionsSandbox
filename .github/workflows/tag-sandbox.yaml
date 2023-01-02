@@ -1,13 +1,12 @@
 name: Test tag actions
 on:
   release:
-    type: published
+    type: released
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "$(( GITHUB_SHA ))"
       - run: echo "$(( GITHUB_REF ))"
 #      - run: ./.github/workflows/scripts/promote_tag.sh
 #        shell: bash
