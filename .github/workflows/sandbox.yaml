@@ -1,7 +1,5 @@
-name: Test Workflow
-
+name: Test Factorio version check action
 on: workflow_dispatch
-
 jobs:
   test:
     runs-on: ubuntu-latest
