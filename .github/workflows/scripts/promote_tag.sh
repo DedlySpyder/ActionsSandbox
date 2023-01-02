@@ -6,8 +6,12 @@ _tag=$(echo "$tag" | cut -d 'v' -f 2)
 major="$(echo "$_tag" | cut -d '.' -f 1)"
 minor="$(echo "$_tag" | cut -d '.' -f 2)"
 
-git tag -d "v$major.$minor" 2> /dev/null || true
-git tag "v$major.$minor" "$GITHUB_SHA"
+minor_tag="v$major.$minor"
+git tag -d "$minor_tag" 2> /dev/null || true
+git tag "$minor_tag" "$GITHUB_SHA"
+git push origin --force "$minor_tag"
 
-git tag -d "v$major" 2> /dev/null || true
-git tag "v$major" "$GITHUB_SHA"
+major_tag="v$major"
+git tag -d "$major_tag" 2> /dev/null || true
+git tag "$major_tag" "$GITHUB_SHA"
+git push origin --force "$major_tag"
