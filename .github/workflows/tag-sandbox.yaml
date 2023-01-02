@@ -7,6 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "$(( GITHUB_REF ))"
-#      - run: ./.github/workflows/scripts/promote_tag.sh
-#        shell: bash
+      - run: ./.github/workflows/scripts/promote_tag.sh
+        shell: bash
