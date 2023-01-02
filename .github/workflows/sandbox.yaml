@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: factorioVersion
-        uses: DedlySpyder/factorio-version-check@main
+        uses: DedlySpyder/factorio-version-check@lint-workflow
       - name: Print experimental version
         run: echo "${{ steps.factorioVersion.outputs.experimental }}"
       - name: Print stable version
