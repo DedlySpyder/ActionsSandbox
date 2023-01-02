@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -euxo pipefail
 
 tag=$(echo "$GITHUB_REF" | cut -d '/' -f 3)
 _tag=$(echo "$tag" | cut -d 'v' -f 2)
