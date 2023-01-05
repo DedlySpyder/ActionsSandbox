@@ -31,10 +31,17 @@ jobs:
       - id: vadliateExperimental
         name: Validate experimental headless image
         run: echo "exists=true" >> $GITHUB_OUTPUT
+      - name: Test can run script
+        uses: ./.github/workflows/scripts/print_arg.sh
+        shell: bash
+        with:
+          arg: ${{ inputs.experimental }}
       - run: echo "${{ steps.vadliateExperimental.outputs.exists }}"
   buildStable:
     name: Stable builder
-    needs: setup
+    needs:
+      - setup
+      - buildStable
     runs-on: ubuntu-latest
     if: inputs.stable != ''
     concurrency: headlessBuild
@@ -42,6 +49,11 @@ jobs:
       - id: vadliateStable
         name: Validate stable headless image
         run: echo "exists=false" >> $GITHUB_OUTPUT
+      - name: Test can run script
+        uses: ./.github/workflows/scripts/print_arg.sh
+        shell: bash
+        with:
+          arg: ${{ inputs.stable }}
       - run: echo "${{ steps.vadliateStable.outputs.exists }}"
 
 
