@@ -42,8 +42,7 @@ jobs:
     steps:
       - id: vadliateStable
         name: Validate stable headless image
-        uses: echo "exists=false" >> $GITHUB_OUTPUT
-        shell: bash
+        run: echo "exists=false" >> $GITHUB_OUTPUT
         with:
           version: ${{ inputs.stable }}
       - run: echo "${{ steps.vadliateStable.outputs.exists }}"
