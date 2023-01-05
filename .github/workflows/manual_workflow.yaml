@@ -32,9 +32,8 @@ jobs:
         name: Validate experimental headless image
         run: echo "exists=true" >> $GITHUB_OUTPUT
       - name: Test can run script
-        uses: ./.github/workflows/scripts/print_arg.sh
-        with:
-          arg: ${{ inputs.experimental }}
+        run: ./.github/workflows/scripts/print_arg.sh "${{ inputs.experimental }}"
+        shell: bash
       - run: echo "${{ steps.vadliateExperimental.outputs.exists }}"
   buildStable:
     name: Stable builder
@@ -47,9 +46,8 @@ jobs:
         name: Validate stable headless image
         run: echo "exists=false" >> $GITHUB_OUTPUT
       - name: Test can run script
-        uses: ./.github/workflows/scripts/print_arg.sh
-        with:
-          arg: ${{ inputs.stable }}
+        run: ./.github/workflows/scripts/print_arg.sh "${{ inputs.stable }}"
+        shell: bash
       - run: echo "${{ steps.vadliateStable.outputs.exists }}"
 
 

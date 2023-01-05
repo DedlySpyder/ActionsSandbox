@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "$INPUT_ARG"
+echo "$1"
