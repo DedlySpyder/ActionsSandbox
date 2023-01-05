@@ -28,6 +28,7 @@ jobs:
     if: inputs.experimental != ''
     concurrency: headlessBuild
     steps:
+      - uses: actions/checkout@v3
       - id: vadliateExperimental
         name: Validate experimental headless image
         run: echo "exists=true" >> $GITHUB_OUTPUT
