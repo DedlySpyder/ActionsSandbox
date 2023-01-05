@@ -1,0 +1,53 @@
+name: Manual workflow
+on:
+  workflow_call:
+    inputs:
+      experimental:
+        description: 'Experimental Factorio version to build'
+        type: string
+      stable:
+        description: 'Stable Factorio version to build'
+        type: string
+  workflow_dispatch:
+    inputs:
+      experimental:
+        description: 'Experimental Factorio version to build'
+        type: string
+      stable:
+        description: 'Stable Factorio version to build'
+        type: string
+jobs:
+  setup:
+    steps:
+      - uses: actions/checkout@v3
+  buildExperimental:
+    name: Experimental builder
+    needs: setup
+    runs-on: ubuntu-latest
+    if: inputs.experimental != ''
+    concurrency: headlessBuild
+    steps:
+      - id: vadliateExperimental
+        name: Validate experimental headless image
+        run: echo "exists=true" >> $GITHUB_OUTPUT
+        with:
+          version: ${{ inputs.experimental }}
+      - run: echo "${{ steps.vadliateExperimental.outputs.exists }}"
+  buildStable:
+    name: Stable builder
+    needs: setup
+    runs-on: ubuntu-latest
+    if: inputs.stable != ''
+    concurrency: headlessBuild
+    steps:
+      - id: vadliateStable
+        name: Validate stable headless image
+        uses: echo "exists=false" >> $GITHUB_OUTPUT
+        shell: bash
+        with:
+          version: ${{ inputs.stable }}
+      - run: echo "${{ steps.vadliateStable.outputs.exists }}"
+
+
+# https://docs.docker.com/build/ci/github-actions/examples/
+# https://github.com/marketplace/actions/build-and-push-docker-images#path-context
