@@ -39,9 +39,7 @@ jobs:
       - run: echo "${{ steps.vadliateExperimental.outputs.exists }}"
   buildStable:
     name: Stable builder
-    needs:
-      - setup
-      - buildStable
+    needs: setup
     runs-on: ubuntu-latest
     if: inputs.stable != ''
     concurrency: headlessBuild
