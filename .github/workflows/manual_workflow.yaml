@@ -33,7 +33,6 @@ jobs:
         run: echo "exists=true" >> $GITHUB_OUTPUT
       - name: Test can run script
         uses: ./.github/workflows/scripts/print_arg.sh
-        shell: bash
         with:
           arg: ${{ inputs.experimental }}
       - run: echo "${{ steps.vadliateExperimental.outputs.exists }}"
@@ -49,7 +48,6 @@ jobs:
         run: echo "exists=false" >> $GITHUB_OUTPUT
       - name: Test can run script
         uses: ./.github/workflows/scripts/print_arg.sh
-        shell: bash
         with:
           arg: ${{ inputs.stable }}
       - run: echo "${{ steps.vadliateStable.outputs.exists }}"
