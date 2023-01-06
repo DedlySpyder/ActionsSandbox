@@ -17,10 +17,6 @@ on:
         description: 'Stable Factorio version to build'
         type: string
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
   buildExperimental:
     name: Experimental builder
     needs: setup
@@ -43,6 +39,7 @@ jobs:
     if: inputs.stable != ''
     concurrency: headlessBuild
     steps:
+      - uses: actions/checkout@v3
       - id: vadliateStable
         name: Validate stable headless image
         run: echo "exists=false" >> $GITHUB_OUTPUT
