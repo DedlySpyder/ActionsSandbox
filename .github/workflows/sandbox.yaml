@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: foo
-        run: echo "foo=true" >> $GITHUB_OUTPUT
+        run: echo "foo=false" >> $GITHUB_OUTPUT
       - run: echo "did it"
         if: steps.foo.outputs.foo == 'true'
 #      - id: factorioVersion
