@@ -4,9 +4,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - id: factorioVersion
-        uses: DedlySpyder/factorio-version-check@main
-      - name: Print experimental version
-        run: echo "${{ steps.factorioVersion.outputs.experimental }}"
-      - name: Print stable version
-        run: echo "${{ steps.factorioVersion.outputs.stable }}"
+      - id: foo
+        run: echo "foo=true" >> $GITHUB_OUTPUT
+      - run: echo "did it"
+        if: steps.foo.outputs.foo
+#      - id: factorioVersion
+#        uses: DedlySpyder/factorio-version-check@main
+#      - name: Print experimental version
+#        run: echo "${{ steps.factorioVersion.outputs.experimental }}"
+#      - name: Print stable version
+#        run: echo "${{ steps.factorioVersion.outputs.stable }}"\
