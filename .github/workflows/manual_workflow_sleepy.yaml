@@ -1,0 +1,27 @@
+name: Manual workflow, with sleeps
+on:
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'value'
+        type: string
+jobs:
+  working_1:
+    name: Working job 1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "first job"
+      - run: echo "input - ${{ inputs.test }}"
+  working_2:
+    name: Working job 2
+    needs: working_1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "second job" && sleep 60s
+      - run: echo "input - ${{ inputs.test }}"
+  working_3:
+    name: Working job 3
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "does not run"
